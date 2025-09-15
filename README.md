@@ -1,6 +1,6 @@
 # SubLynx
 
-![sublynx-logo](docs/logo.png)
+![sublynx-logo](logo.png)
 
 **SubLynx** is an advanced, stealth-friendly subdomain discovery and validation platform built for security engineers, red teams, and bug bounty workflows. It combines multi-source discovery (CT logs, passive intel, permutations), layered validation, and clean reporting — with rate control and scheduling engineered for reliability at scale.
 
