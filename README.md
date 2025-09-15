@@ -96,11 +96,9 @@ Global Flags:
       --log-format string  log format (text, json) (default "json")
       --log-file string    log file path
   -v, --version            version for sublynx
-```
 
-**Scan Command**
+Scan Command
 
-```
 Perform comprehensive subdomain discovery, validation, and security analysis.
 
 Usage:
@@ -124,11 +122,9 @@ Global Flags:
       --log-file string    log file path
   -q, --quiet              quiet mode (no banner output)
 
-```
 
-**Configure & Output Commands**
+Configure & Output Commands
 
-```
 sublynx configure [get|init|list|set|show]  # Manage profiles under ~/.sublynx/
 sublynx output    [cleanup|generate|list|stats|view]  # Work with reports
 ```
