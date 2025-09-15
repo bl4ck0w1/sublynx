@@ -1,0 +1,27 @@
+* text=auto eol=lf
+
+*.go   text eol=lf
+*.mod  text eol=lf
+*.sum  text eol=lf
+*.md   text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.sh   text eol=lf
+
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.gz   binary
+
+third_party/** linguist-vendored
+vendor/**      linguist-vendored
+
+.github/**     export-ignore
+.gitignore     export-ignore
+.gitattributes export-ignore
