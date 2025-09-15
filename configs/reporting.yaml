@@ -1,0 +1,23 @@
+output_dir: "./reports"
+default_format: "txt"
+include_raw_data: false
+risk_score_threshold: 3.0
+max_report_age: 720h  
+auto_cleanup: true
+compress_reports: true
+
+templates:
+  default_template: "standard"
+  custom_templates_dir: "./configs/templates"
+
+risk_weights:
+  critical: 10.0
+  high: 7.5
+  medium: 5.0
+  low: 2.5
+  info: 1.0
+
+notifications:
+  email_enabled: false
+  webhook_enabled: false
+  slack_enabled: false

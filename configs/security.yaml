@@ -1,0 +1,57 @@
+security:
+  ssl:
+    timeout: "10s"
+    trusted_roots_path: "/etc/ssl/certs/ca-certificates.crt"
+    revocation_check: true
+    ocsp_check: true
+    crl_check: true
+    cipher_testing: true
+    curve_testing: true
+    vulnerability_scanning: true
+
+  vulnerabilities:
+    update_interval: "24h"
+    cve_sources:
+      - "https://cve.mitre.org/data/downloads/allitems.json"
+      - "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-%d.json.gz"
+    software_db_path: "data/software/software-db.json"
+    max_cve_age: "365d"
+
+  misconfigurations:
+    rules:
+      - id: "default-credentials"
+        severity: "critical"
+        enabled: true
+      - id: "weak-ciphers"
+        severity: "high"
+        enabled: true
+      - id: "weak-protocols"
+        severity: "high"
+        enabled: true
+      - id: "no-encryption"
+        severity: "high"
+        enabled: true
+      - id: "exposed-admin"
+        severity: "high"
+        enabled: true
+      - id: "info-disclosure"
+        severity: "medium"
+        enabled: true
+      - id: "no-auth"
+        severity: "high"
+        enabled: true
+      - id: "debug-enabled"
+        severity: "medium"
+        enabled: true
+      - id: "directory-listing"
+        severity: "low"
+        enabled: true
+      - id: "missing-headers"
+        severity: "low"
+        enabled: true
+
+  logging:
+    level: "info"
+    log_findings: true
+    log_remediations: true
+    report_format: "json"

@@ -1,0 +1,59 @@
+{
+  "model": {
+    "seq_length": 50,
+    "char_embedding_dim": 64,
+    "word_embedding_dim": 100,
+    "dropout_rate": 0.3,
+    "recurrent_dropout_rate": 0.2,
+    "max_word_len": 20,
+    "max_words": 10000
+  },
+  "training": {
+    "batch_size": 512,
+    "epochs": 100,
+    "learning_rate": 0.001,
+    "gradient_clip": 1.0,
+    "early_stopping_patience": 10,
+    "validation_split": 0.2,
+    "test_split": 0.1
+  },
+  "prediction": {
+    "top_k": 5,
+    "temperature": 0.8,
+    "max_length": 30,
+    "min_subdomain_len": 3,
+    "max_subdomain_len": 63,
+    "beam_width": 3
+  },
+  "data_sources": {
+    "common_crawl": true,
+    "ct_logs": true,
+    "public_datasets": true,
+    "internal_discovery": true
+  },
+  "datasets": {
+    "common_crawl_url": "https://commoncrawl.org/the-data/",
+    "ct_logs_urls": [
+      "https://crt.sh/",
+      "https://certstream.calidog.io/",
+      "https://ct.cloudflare.com/"
+    ],
+    "public_datasets": [
+      "https://github.com/assetnote/commonspeak2-wordlists",
+      "https://github.com/danielmiessler/SecLists",
+      "https://github.com/bitquark/dnspop"
+    ]
+  },
+  "pre-trained_models": {
+    "fasttext": {
+      "url": "https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.en.300.bin.gz",
+      "dimensions": 300,
+      "language": "english"
+    },
+    "word2vec": {
+      "url": "https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz",
+      "dimensions": 300,
+      "vocabulary": 3000000
+    }
+  }
+}

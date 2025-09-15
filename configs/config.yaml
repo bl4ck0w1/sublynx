@@ -1,0 +1,43 @@
+ct_logs:
+  - id: "google_aviator"
+    url: "https://ct.googleapis.com/aviator/"
+    name: "Google Aviator"
+    operator: "Google"
+    description: "Google's Aviator CT log"
+    state: "qualified"
+    priority: 1
+
+  - id: "google_rocketeer"
+    url: "https://ct.googleapis.com/rocketeer/"
+    name: "Google Rocketeer"
+    operator: "Google"
+    description: "Google's Rocketeer CT log"
+    state: "qualified"
+    priority: 1
+
+  - id: "digicert_ct1"
+    url: "https://ct1.digicert-ct.com/log/"
+    name: "DigiCert CT1"
+    operator: "DigiCert"
+    description: "DigiCert CT log 1"
+    state: "qualified"
+    priority: 2
+
+  - id: "digicert_ct2"
+    url: "https://ct2.digicert-ct.com/log/"
+    name: "DigiCert CT2"
+    operator: "DigiCert"
+    description: "DigiCert CT log 2"
+    state: "qualified"
+    priority: 2
+
+monitoring:
+  interval: "5m"  
+  batch_size: 1000 
+  max_retries: 3  
+
+processing:
+  domain_filters: [] 
+  validate_certs: true
+  extract_issuer: true
+  store_raw_data: false 

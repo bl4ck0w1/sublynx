@@ -1,0 +1,51 @@
+content_analysis:
+  nlp:
+    model_path: "data/models/dead_page_detector"
+    use_gpu: false
+    confidence_threshold: 0.8
+    fallback_enabled: true
+
+  similarity:
+    model_name: "all-MiniLM-L6-v2"
+    weights:
+      cosine: 0.3
+      jaccard: 0.2
+      levenshtein: 0.1
+      semantic: 0.3
+      structural: 0.1
+    similarity_threshold: 0.85
+
+  pattern_matching:
+    cache_enabled: true
+    cache_size: 1000
+    patterns:
+      - name: "email"
+        pattern: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
+      - name: "url"
+        pattern: "https?://[^\\s<>\"{}|\\\\^\\[\\]`]+"
+      - name: "ipv4"
+        pattern: "\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b"
+      - name: "ipv6"
+        pattern: "([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|::1|(?:[0-9a-fA-F]{1,4}:){1,7}:|(?:[0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}"
+
+  hashing:
+    similarity_threshold: 0.95
+    hash_types:
+      - "md5"
+      - "sha1"
+      - "sha256"
+      - "simhash"
+      - "xxh3"
+    rebuild_index_interval: "1h"
+
+  dead_page_detection:
+    enabled: true
+    min_content_length: 100
+    pattern_threshold: 0.7
+    nlp_threshold: 0.8
+    combined_threshold: 0.75
+
+  logging:
+    level: "info"
+    log_matches: true
+    log_similarity: false

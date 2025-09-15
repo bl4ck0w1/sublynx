@@ -1,0 +1,40 @@
+dns:
+  resolvers:
+    - "1.1.1.1:53"     # Cloudflare
+    - "8.8.8.8:53"     # Google
+    - "9.9.9.9:53"     # Quad9
+    - "208.67.222.222:53" # OpenDNS
+
+  timeout: "5s"
+  max_retries: 3
+  concurrency: 10
+  cache_ttl: "5m"
+
+  record_types:
+    - "A"
+    - "AAAA"
+    - "CNAME"
+    - "MX"
+    - "TXT"
+    - "NS"
+    - "SOA"
+    - "SRV"
+    - "DNSKEY"
+    - "DS"
+    - "RRSIG"
+
+  analysis:
+    check_ip_reputation: true
+    check_email_security: true
+    check_dnssec: true
+    check_subdomain_takeover: true
+
+  retry:
+    base_timeout: "1s"
+    max_timeout: "10s"
+    jitter_factor: 0.3
+
+  logging:
+    level: "info"
+    log_failures: true
+    log_successes: false

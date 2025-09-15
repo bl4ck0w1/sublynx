@@ -1,0 +1,54 @@
+passive_dns:
+  providers:
+    dnsdb:
+      enabled: true
+      api_key: "your-dnsdb-api-key"
+      base_url: "https://api.dnsdb.info"
+      rate_limit: "100ms"
+      max_results: 1000
+    
+    virustotal:
+      enabled: true
+      api_key: "your-virustotal-api-key"
+      base_url: "https://www.virustotal.com/api/v3"
+      rate_limit: "15s"
+    
+    securitytrails:
+      enabled: true
+      api_key: "your-securitytrails-api-key"
+      base_url: "https://api.securitytrails.com/v1"
+      rate_limit: "1s"
+    
+    circl:
+      enabled: true
+      username: "your-circl-username"
+      password: "your-circl-password"
+      base_url: "https://www.circl.lu/pdns/query"
+      rate_limit: "100ms"
+
+web_archives:
+  services:
+    wayback_machine:
+      enabled: true
+      base_url: "https://web.archive.org"
+      rate_limit: "1s"
+      max_pages: 100
+      timeout: "30s"
+    
+    common_crawl:
+      enabled: true
+      base_url: "https://index.commoncrawl.org"
+      rate_limit: "500ms"
+      max_results: 1000
+      index: "CC-MAIN-2023-23"
+    
+    archive_today:
+      enabled: true
+      base_url: "https://archive.today"
+      rate_limit: "2s"
+      timeout: "30s"
+
+general:
+  timeout: "30s"
+  max_retries: 3
+  user_agent: "SubLynx/1.0 (+https://github.com/bl4ck0w1/sublynx)"

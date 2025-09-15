@@ -1,0 +1,268 @@
+version: "1.0.0"
+environment: "production"  
+
+general:
+  tool_name: "SubLynx"
+  version: "1.0.0"
+  max_concurrent_scans: 10
+  default_timeout: "30m"
+  retry_attempts: 3
+  temp_directory: "/tmp/sublynx"
+  data_directory: "./data"
+  log_level: "info" 
+  enable_telemetry: false
+  auto_update: true
+  update_check_interval: "24h"
+
+discovery:
+  enabled: true
+  max_depth: 3
+  max_subdomains: 10000
+  methods:
+    ct_logs: true
+    passive_dns: true
+    web_archives: true
+    permutations: true
+    ai_prediction: true
+
+  ct_logs:
+    enabled: true
+    log_servers:
+      - "https://ct.googleapis.com/logs/argon2023/"
+      - "https://ct.googleapis.com/aviator/"
+      - "https://ct.googleapis.com/rocketeer/"
+      - "https://ct.googleapis.com/icarus/"
+      - "https://ct.cloudflare.com/logs/nimbus2023/"
+    update_interval: "5m"
+    max_entries: 1000
+
+  passive_dns:
+    enabled: true
+    providers:
+      - "securitytrails"
+      - "virustotal"
+      - "circl"
+      - "farsight"
+    api_key: "" 
+
+  web_archives:
+    enabled: true
+    providers:
+      - "wayback"
+      - "archiveis"
+      - "archive.org"
+    max_pages: 100
+
+  permutations:
+    enabled: true
+    max_depth: 3
+    wordlist_directory: "./configs/wordlists"
+    industry_specific: true
+    common_patterns: true
+    fuzzing_patterns: true
+
+  ai_prediction:
+    enabled: true
+    model_path: "./data/trained_models/subdomain_predictor"
+    confidence_threshold: 0.7
+    max_predictions: 1000
+
+validation:
+  enabled: true
+  methods:
+    dns: true
+    http: true
+    content_analysis: true
+    security_checks: true
+
+  dns:
+    enabled: true
+    resolvers:
+      - "8.8.8.8"  
+      - "1.1.1.1"  
+      - "9.9.9.9"  
+    timeout: "5s"
+    max_retries: 3
+    record_types:
+      - "A"
+      - "AAAA"
+      - "CNAME"
+      - "MX"
+      - "TXT"
+      - "NS"
+
+  http:
+    enabled: true
+    timeout: "10s"
+    max_redirects: 5
+    user_agent: "SubLynx/1.0 (+https://github.com/bl4ck0w1/sublynx)"
+    verify_ssl: true
+    headers:
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+      Accept-Language: "en-US,en;q=0.5"
+      Accept-Encoding: "gzip, deflate"
+      Connection: "close"
+
+  content_analysis:
+    enabled: true
+    similarity_threshold: 0.8
+    min_content_length: 100
+    max_content_length: 10485760  # 10MB
+    extract_technologies: true
+    detect_language: true
+    analyze_structure: true
+
+  security:
+    enabled: true
+    ssl_tls: true
+    vulnerability_scanning: true
+    misconfiguration_detection: true
+    cve_database:
+      enabled: true
+      update_interval: "24h"
+      database_path: "./data/threat_intel/cve.db"
+
+evasion:
+  enabled: true
+  techniques:
+    proxy_rotation: true
+    fingerprint_spoofing: true
+    request_masquerading: true
+    timing_manipulation: true
+
+  proxies:
+    enabled: true
+    sources:
+      - "file"
+      - "api"
+    file_path: "./configs/proxies.txt"
+    api_endpoints:
+      - "https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
+    max_proxies: 100
+    test_url: "https://httpbin.org/ip"
+    test_timeout: "10s"
+    rotation_interval: "5m"
+
+  fingerprinting:
+    enabled: true
+    tls_fingerprints:
+      - "chrome"
+      - "firefox"
+      - "safari"
+      - "edge"
+      - "random"
+    http_profiles:
+      - "chrome_win"
+      - "firefox_win"
+      - "safari_mac"
+      - "chrome_android"
+    rotation_interval: "10s"
+
+  timing:
+    enabled: true
+    min_delay: "100ms"
+    max_delay: "5s"
+    jitter: 0.3
+    adaptive: true
+    rate_limit: 10  
+
+reporting:
+  enabled: true
+  output_directory: "./reports"
+  formats:
+    txt: true
+    csv: true
+    json: true
+    yaml: true
+  include_raw_data: false
+  compression: true
+  auto_open: false
+  risk_score_threshold: 3.0
+  max_report_age: "720h" 
+
+ 
+  notifications:
+    email:
+      enabled: false
+      smtp_host: ""
+      smtp_port: 587
+      smtp_user: ""
+      smtp_password: ""
+      from_address: "black0wl@sublynx.com"
+      to_addresses: []
+    webhook:
+      enabled: false
+      url: ""
+      secret: ""
+    slack:
+      enabled: false
+      webhook_url: ""
+      channel: "#security"
+
+storage:
+  enabled: true
+  engine: "local"  
+  directory: "./data/storage"
+  compression: true
+  encryption: false
+  encryption_key: ""  
+  retention_period: "720h" 
+  max_size: "10GB"
+
+  database:
+    type: "sqlite" 
+    connection_string: "./data/sublynx.db"
+    max_connections: 10
+    max_idle_connections: 5
+    connection_timeout: "30s"
+
+api:
+  enabled: false
+  host: "localhost"
+  port: 8080
+  enable_https: false
+  ssl_cert: ""
+  ssl_key: ""
+  auth_required: true
+  rate_limit: 100
+  cors_allowed_origins:
+    - "*"
+
+monitoring:
+  enabled: true
+  metrics_port: 9090
+  health_check_interval: "30s"
+  performance_metrics: true
+  resource_usage: true
+  alerting:
+    enabled: false
+    cpu_threshold: 80
+    memory_threshold: 80
+    disk_threshold: 90
+
+advanced:
+  max_goroutines: 1000
+  max_open_files: 10000
+  memory_limit: "2GB"
+  cpu_affinity: false
+  enable_pprof: false
+  pprof_port: 6060
+  debug: false
+
+integrations:
+  shodan:
+    enabled: false
+    api_key: ""
+  security_trails:
+    enabled: false
+    api_key: ""
+  virus_total:
+    enabled: false
+    api_key: ""
+  alienvault_otx:
+    enabled: false
+    api_key: ""
+  censys:
+    enabled: false
+    api_id: ""
+    api_secret: ""

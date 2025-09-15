@@ -1,0 +1,98 @@
+evasion:
+  proxies:
+    health_check_interval: "5m"
+    max_failures: 3
+    rotation_strategy: "round_robin" 
+    sources:
+      - type: "luminati"
+        username: "your-username"
+        password: "your-password"
+        zone: "your-zone"
+      - type: "smartproxy"
+        username: "your-username"
+        password: "your-password"
+      - type: "oxylabs"
+        username: "your-username"
+        password: "your-password"
+      - type: "free"
+
+  fingerprinting:
+    tls:
+      enabled: true
+      default_fingerprint: "chrome"
+      rotation_interval: "1h"
+      custom_fingerprints:
+        - name: "custom_chrome"
+          client: "Chrome/91.0.4472.124"
+          version: "771"
+        - name: "custom_firefox"
+          client: "Firefox/89.0"
+          version: "791"
+
+    http:
+      enabled: true
+      header_order_randomization: true
+      header_case_variation: true
+      fake_headers: true
+      http_version_mixing: true
+
+    browser:
+      enabled: true
+      user_agents:
+        - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        - "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+      viewport_sizes:
+        - "1920x1080"
+        - "1366x768"
+        - "1536x864"
+        - "1440x900"
+
+  timing:
+    random_delays:
+      enabled: true
+      min_delay: "100ms"
+      max_delay: "5s"
+      jitter_factor: 0.3
+
+    rate_limiting:
+      enabled: true
+      requests_per_second: 10
+      burst_size: 5
+      adaptive: true
+      learning_period: "5m"
+
+  stealth:
+    ip_obfuscation:
+      enabled: true
+      techniques:
+        - "proxy_chaining"
+        - "tor_network"
+        - "cloudflare_proxy"
+      tor_nodes:
+        - "127.0.0.1:9050"
+        - "127.0.0.1:9150"
+
+    request_masquerade:
+      enabled: true
+      techniques:
+        - "referrer_spoofing"
+        - "language_spoofing"
+        - "timezone_spoofing"
+        - "cookie_syncing"
+      common_referrers:
+        - "https://www.google.com/"
+        - "https://www.facebook.com/"
+        - "https://www.twitter.com/"
+        - "https://www.reddit.com/"
+      common_languages:
+        - "en-US,en;q=0.9"
+        - "en-GB,en;q=0.8"
+        - "de-DE,de;q=0.9"
+        - "fr-FR,fr;q=0.8"
+
+  logging:
+    level: "info"
+    log_proxy_usage: true
+    log_fingerprint_usage: false
+    log_evasion_attempts: true
