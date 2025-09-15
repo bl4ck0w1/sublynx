@@ -64,7 +64,19 @@ go install ./cmd/sublynx
 > SubLynx prints a consolidated, full-page help at the root level and normal focused help at subcommands.
 
 ```
-SubLynx — Advanced Subdomain Discovery Platform
+echo "   ▄████████ ███    █▄  ▀█████████▄   ▄█       ▄██   ▄   ███▄▄▄▄   ▀████    ▐████▀ ";
+echo "  ███    ███ ███    ███   ███    ███ ███       ███   ██▄ ███▀▀▀██▄   ███▌   ████▀  ";
+echo "  ███    █▀  ███    ███   ███    ███ ███       ███▄▄▄███ ███   ███    ███  ▐███    ";
+echo "  ███        ███    ███  ▄███▄▄▄██▀  ███       ▀▀▀▀▀▀███ ███   ███    ▀███▄███▀    ";
+echo "▀███████████ ███    ███ ▀▀███▀▀▀██▄  ███       ▄██   ███ ███   ███    ████▀██▄     ";
+echo "         ███ ███    ███   ███    ██▄ ███       ███   ███ ███   ███   ▐███  ▀███    ";
+echo "   ▄█    ███ ███    ███   ███    ███ ███▌    ▄ ███   ███ ███   ███  ▄███     ███▄  ";
+echo " ▄████████▀  ████████▀  ▄█████████▀  █████▄▄██  ▀█████▀   ▀█   █▀  ████       ███▄ ";
+echo "                                     ▀                                             ";
+	
+
+						Advanced Subdomain Discovery Platform
+			______________________________________________________________
 
 Usage:
   sublynx [command]
