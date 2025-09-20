@@ -75,8 +75,8 @@ echo " ▄████████▀  ████████▀  ▄███
 echo "                                     ▀                                             ";
 	
 
-						Advanced Subdomain Discovery Platform
-			______________________________________________________________
+						              Advanced Subdomain Discovery Tool
+			      ______________________________________________________________
 
 Usage:
   sublynx [command]
@@ -128,7 +128,6 @@ Configure & Output Commands
 sublynx configure [get|init|list|set|show]  # Manage profiles under ~/.sublynx/
 sublynx output    [cleanup|generate|list|stats|view]  # Work with reports
 ```
-
 ---
 
 ## Usage Examples
@@ -148,9 +147,7 @@ bin/sublynx scan example.com --stealth -d 3 -f txt,csv,json
 ### 3) Control discovery/validation explicitly
 
 ```bash
-bin/sublynx scan example.com \
-  --methods ct,passive,permutations \
-  --validation dns,http,security
+bin/sublynx scan example.com --methods ct,passive,permutations --validation dns,http,security
 ```
 
 ### 4) Skip validation (discovery only)
