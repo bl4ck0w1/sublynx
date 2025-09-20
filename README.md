@@ -75,8 +75,8 @@ echo " ▄████████▀  ████████▀  ▄███
 echo "                                     ▀                                             ";
 	
 
-						              Advanced Subdomain Discovery Tool
-			      ______________________________________________________________
+						Advanced Subdomain Discovery Tool
+			______________________________________________________________
 
 Usage:
   sublynx [command]
